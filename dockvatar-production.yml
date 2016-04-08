@@ -1,0 +1,24 @@
+dnmonster:
+  image: 'amouat/dnmonster:1.0'
+  restart: always
+  tags:
+    - production
+dockvatar:
+  image: 'aieeeeeeeee/dockvatar:master'
+  autoredeploy: true
+  environment:
+    - ENV=production
+  links:
+    - dnmonster
+    - redis
+  ports:
+    - '9090:9090'
+  restart: always
+  tags:
+    - production
+redis:
+  image: 'redis:3.0'
+  restart: always
+  tags:
+    - production
+

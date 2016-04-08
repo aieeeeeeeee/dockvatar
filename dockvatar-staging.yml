@@ -1,0 +1,23 @@
+redis:
+  image: 'redis:3.0'
+  tags:
+    - staging
+  restart: always
+dnmonster:
+    image: 'amouat/dnmonster:1.0'
+    tags:
+        - staging
+    restart: always
+dockvatar:
+  image: 'aieeeeeeeee/dockvatar:latest'
+  autoredeploy: true
+  restart: always
+  tags:
+    - staging
+  environment:
+    ENV: DEV
+  links:
+    - dnmonster
+    - redis
+  ports:
+    - "5000:5000"
